@@ -20,6 +20,8 @@ __pycache__/
 *.pyc
 *.pyo
 
-# PDF exports (source is .md)
-# docs/*.pdf
+# 数据手册（原始PDF + 衍生手册，不上传GitHub）
 datasheets/
+
+# Reasonix 代理配置文件（本地使用，不上传）
+reasonix.toml
