@@ -31,17 +31,17 @@
 
 | 引脚 | BGA289 | BGA196 | ALT0 | ALT1 | ALT2 | ALT3 | ALT4 | ALT5 | ALT7 | ALT9 | ALT10 | ALT11 | ALT16 | ALT17 | ALT18 | ALT20 | ALT21 | ALT22 | ALT23 | ALT24 | ALT25 | ALT26 | ALT27 | 模拟 | **信号板用途** |
 |------|--------|--------|------|------|------|------|------|------|------|------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|------|--------------|
-| **PA00** | K4 | G2 | GPIO_A_00 | GPTMR1_COMP_0 | **UART0_TXD** | | | | **MCAN0_TXD** | | | | PWM0_P_0 | TRGM_P_00 | | | | | | SYSCTL_CLK_OBS_0 | | | | - | ⭐ 开发:Debug UART0 TX / 量产:MCAN0 TX |
-| **PA01** | K5 | G3 | GPIO_A_01 | GPTMR1_CAPT_0 | **UART0_RXD** | | | | **MCAN0_RXD** | | | | PWM0_P_1 | TRGM_P_01 | | | | | | SYSCTL_CLK_OBS_2 | | | | - | ⭐ 开发:Debug UART0 RX / 量产:MCAN0 RX |
-| **PA02** | J4 | G4 | GPIO_A_02 | GPTMR1_COMP_1 | UART0_DE | UART0_RTS | I2C2_SCL | | **MCAN0_STBY** | | | | PWM0_P_2 | TRGM_P_02 | | | | | | SYSCTL_CLK_OBS_1 | | | | - | ⭐ BOOT_MODE1(启动锁存) → MCAN0 STBY |
-| **PA03** | J5 | G5 | GPIO_A_03 | GPTMR1_CAPT_1 | | UART0_CTS | I2C2_SDA | SPI0_CS_3 | **MCAN1_STBY** | | | | PWM0_P_3 | TRGM_P_03 | | | | | | SYSCTL_CLK_OBS_3 | | | | - | ⭐ BOOT_MODE0(启动锁存) → MCAN1 STBY |
-| **PA04** | H3 | F2 | GPIO_A_04 | | | UART1_CTS | | SPI1_SCLK | **MCAN1_RXD** | | | | PWM0_P_4 | TRGM_P_04 | | | | | | **JTAG_TDO** | | | | - | ⭐ 开发:JTAG TDO / 量产:MCAN1 RX |
-| **PA05** | H4 | F3 | GPIO_A_05 | GPTMR1_COMP_2 | UART1_DE | UART1_RTS | | SPI1_CS_0 | **MCAN1_TXD** | | | | PWM0_P_5 | TRGM_P_05 | | | | | | **JTAG_TDI** | | | | - | ⭐ 开发:JTAG TDI / 量产:MCAN1 TX |
-| **PA06** | H5 | F4 | GPIO_A_06 | GPTMR0_CAPT_0 | **UART1_RXD** | | I2C3_SDA | SPI1_MISO | | | | | PWM0_P_6 | TRGM_P_06 | | | | | | JTAG_TCK | | | | - | ⭐ HLK-7628N RX (开发时JTAG复用) |
-| **PA07** | G5 | F5 | GPIO_A_07 | GPTMR0_COMP_0 | **UART1_TXD** | | I2C3_SCL | SPI1_MOSI | | PDM0_D_3 | | | PWM0_P_7 | TRGM_P_07 | | | | | | JTAG_TMS | | | | - | ⭐ HLK-7628N TX (开发时JTAG复用) |
-| **PA08** | K1 | G1 | GPIO_A_08 | GPTMR0_COMP_1 | UART2_TXD | | I2C0_SCL | SPI0_CS_2 | **MCAN2_TXD** | | | | PWM1_P_0 | TRGM_P_08 | | RDC0_PWM_N | QEO2_B | SEI2_TX | SDM1_DAT_0 | JTAG_TRST | | | | - | ⭐ 开发:JTAG TRST / 量产:MCAN2 TX |
-| **PA09** | K2 | F1 | GPIO_A_09 | GPTMR0_CAPT_1 | UART2_RXD | | I2C0_SDA | SPI0_CS_1 | **MCAN2_RXD** | | | ESC0_REFCK | PWM1_P_1 | TRGM_P_09 | | RDC0_PWM_P | QEO2_A | SEI2_RX | SDM1_CLK_0 | | | TSW0_EVTO_2 | | - | MCAN2 RX |
-| **PA10** | K3 | - | GPIO_A_10 | GPTMR0_COMP_2 | UART2_DE | UART2_RTS | | SPI0_SCLK | **MCAN2_STBY** | | | ESC0_CTR_1 | PWM1_P_2 | TRGM_P_10 | | QEI3_F | QEO2_Z | SEI2_DE | SDM1_DAT_1 | | ETH0_EVTI_0 | TSW0_EVTI_0 | ESC0_EVTI_0 | - | MCAN2 STBY |
+| **PA00** | K4 | G2 | GPIO_A_00 | GPTMR1_COMP_0 | **UART0_TXD** | | | | **MCAN0_TXD** | | | | PWM0_P_0 | TRGM_P_00 | | | | | | SYSCTL_CLK_OBS_0 | | | | - | ⭐ **UART0 TX (ISP Debug)** (MCAN0已移至PD00) |
+| **PA01** | K5 | G3 | GPIO_A_01 | GPTMR1_CAPT_0 | **UART0_RXD** | | | | **MCAN0_RXD** | | | | PWM0_P_1 | TRGM_P_01 | | | | | | SYSCTL_CLK_OBS_2 | | | | - | ⭐ **UART0 RX (ISP Debug)** (MCAN0已移至PD01) |
+| **PA02** | J4 | G4 | GPIO_A_02 | GPTMR1_COMP_1 | UART0_DE | UART0_RTS | I2C2_SCL | | **MCAN0_STBY** | | | | PWM0_P_2 | TRGM_P_02 | | | | | | SYSCTL_CLK_OBS_1 | | | | - | ⭐ **BOOT_MODE1**(MCAN0 STBY不用) |
+| **PA03** | J5 | G5 | GPIO_A_03 | GPTMR1_CAPT_1 | | UART0_CTS | I2C2_SDA | SPI0_CS_3 | **MCAN1_STBY** | | | | PWM0_P_3 | TRGM_P_03 | | | | | | SYSCTL_CLK_OBS_3 | | | | - | ⭐ **BOOT_MODE0**(MCAN1 STBY不用,TJA1050T无STBY) |
+| **PA04** | H3 | F2 | GPIO_A_04 | | | UART1_CTS | | SPI1_SCLK | **MCAN1_RXD** | | | | PWM0_P_4 | TRGM_P_04 | | | | | | **JTAG_TDO** | | | | - | ⭐ **JTAG TDO**(MCAN1已移至PB04) |
+| **PA05** | H4 | F3 | GPIO_A_05 | GPTMR1_COMP_2 | UART1_DE | UART1_RTS | | SPI1_CS_0 | **MCAN1_TXD** | | | | PWM0_P_5 | TRGM_P_05 | | | | | | **JTAG_TDI** | | | | - | ⭐ **JTAG TDI**(MCAN1已移至PB05) |
+| **PA06** | H5 | F4 | GPIO_A_06 | GPTMR0_CAPT_0 | **UART1_RXD** | | I2C3_SDA | SPI1_MISO | | | | | PWM0_P_6 | TRGM_P_06 | | | | | | JTAG_TCK | | | | - | ⭐ **JTAG TCK**(HLK已移至UART3/PC14-15) |
+| **PA07** | G5 | F5 | GPIO_A_07 | GPTMR0_COMP_0 | **UART1_TXD** | | I2C3_SCL | SPI1_MOSI | | PDM0_D_3 | | | PWM0_P_7 | TRGM_P_07 | | | | | | JTAG_TMS | | | | - | ⭐ **JTAG TMS**(HLK已移至UART3/PC14-15) |
+| **PA08** | K1 | G1 | GPIO_A_08 | GPTMR0_COMP_1 | UART2_TXD | | I2C0_SCL | SPI0_CS_2 | **MCAN2_TXD** | | | | PWM1_P_0 | TRGM_P_08 | | RDC0_PWM_N | QEO2_B | SEI2_TX | SDM1_DAT_0 | JTAG_TRST | | | | - | ⭐ **JTAG TRST**(MCAN2已移至PE08) |
+| **PA09** | K2 | F1 | GPIO_A_09 | GPTMR0_CAPT_1 | UART2_RXD | | I2C0_SDA | SPI0_CS_1 | **MCAN2_RXD** | | | ESC0_REFCK | PWM1_P_1 | TRGM_P_09 | | RDC0_PWM_P | QEO2_A | SEI2_RX | SDM1_CLK_0 | | | TSW0_EVTO_2 | | - | 空闲(MCAN2已移至PE09) |
+| **PA10** | K3 | - | GPIO_A_10 | GPTMR0_COMP_2 | UART2_DE | UART2_RTS | | SPI0_SCLK | **MCAN2_STBY** | | | ESC0_CTR_1 | PWM1_P_2 | TRGM_P_10 | | QEI3_F | QEO2_Z | SEI2_DE | SDM1_DAT_1 | | ETH0_EVTI_0 | TSW0_EVTI_0 | ESC0_EVTI_0 | - | 空闲(MCAN2已移至PE10) |
 | **PA11** | J1 | - | GPIO_A_11 | | | UART2_CTS | | SPI0_CS_0 | | PDM0_CLK | | ESC0_CTR_0 | PWM1_P_3 | TRGM_P_11 | | QEI3_H1 | RDC1_PWM_N | SEI2_CK | SDM1_CLK_1 | | ETH0_EVTO_0 | TSW0_EVTO_0 | ESC0_EVTO_0 | - | RS485_CH1 DE/RE |
 | **PA12** | J2 | - | GPIO_A_12 | | | UART3_CTS | I2C1_SDA | SPI0_MISO | | PDM0_D_0 | | ESC0_SDA | PWM1_P_4 | TRGM_P_12 | | QEI3_H0 | RDC1_PWM_P | SEI3_CK | SDM1_DAT_2 | | ETH0_EVTI_1 | TSW0_EVTI_1 | ESC0_EVTI_1 | - | HLK nRST |
 | **PA13** | J3 | - | GPIO_A_13 | GPTMR1_COMP_3 | UART3_DE | UART3_RTS | I2C1_SCL | SPI0_MOSI | **MCAN3_STBY** | PDM0_CLK | | ESC0_SCL | PWM1_P_5 | TRGM_P_13 | | QEI3_Z | QEO3_Z | SEI3_DE | SDM1_CLK_2 | | ETH0_EVTO_1 | TSW0_EVTO_1 | ESC0_EVTO_1 | - | MCAN3 STBY |
@@ -554,9 +554,9 @@
 | **BOOT 配置** | PA02/PA03 | - | B01 | 启动锁存后做 MCAN0_STBY/MCAN1_STBY |
 | **Debug(开发)** | PA00(TX)/PA01(RX) | ALT2=UART0 | B01 | ISP烧录+Debug，与MCAN0复用 |
 | **Debug(量产)** | PD15(TX)/PD14(RX) | ALT2=UART11 | B07 | Debug日志输出，ISP改用USB0 |
-| **MCAN0** | PA00(TX)/PA01(RX)/PA02(STBY) | ALT7 | B01 | 量产阶段可用，开发阶段被UART0占用 |
-| **MCAN1** | PA05(TX)/PA04(RX)/PA03(STBY) | ALT7 | B01 | 量产阶段可用，开发阶段被JTAG占用 |
-| **MCAN2** | PA08(TX)/PA09(RX)/PA10(STBY) | ALT7 | B01 | 量产阶段可用，开发阶段被JTAG占用 |
+| **MCAN0** | **PD00(TX)/PD01(RX)/PD02(STBY)** | ALT7 | **B06** | ✅ 始终可用(PA00/01仅UART0 ISP) |
+| **MCAN1** | **PB05(TX)/PB04(RX)** | ALT7 | **B02** | ✅ 始终可用(PA04/05仅JTAG) |
+| **MCAN2** | **PE08(TX)/PE09(RX)/PE10(STBY)** | ALT7 | **B09** | ✅ 始终可用(PA08仅JTAG_TRST) |
 | **MCAN3** | PA15(TX)/PA14(RX)/PA13(STBY) | ALT7 | B01 | ✅ 始终可用 |
 | **MCAN4** | PA16(TX)/PA17(RX)/PA18(STBY) | ALT7 | B01 | ✅ 始终可用(不使用TSN) |
 | **MCAN5** | PA21(TX)/PA20(RX)/PA19(STBY) | ALT7 | B01 | ✅ 始终可用(不使用TSN) |
@@ -616,7 +616,7 @@
 | **可用CAN** | MCAN3/4/5/7 + MCP2518FD = **5路** | MCAN0/1/2/3/4/5/7 + MCP2518FD = **8路** |
 | **ISP烧录** | UART0(PA00/PA01) ISP | USB0(M16/M17) ISP |
 | **Debug日志** | UART0(PA00/PA01) | UART11(PD14/PD15) |
-| **JTAG** | PA04~PA08 保留 | 释放给 MCAN1(TX/RX) + MCAN2(TX) |
+| **JTAG** | PA04~PA08 保留 | 专用(MCAN1/2已移至PB/PE组) |
 | **RS485** | 8路不变 | 8路不变 |
 | **以太网** | RGMII(PE20-31) + MDIO(PF00/01) | 同左 |
 | **Flash** | XPI0(PB24-31) | 同左 |
