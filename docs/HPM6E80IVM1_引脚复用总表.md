@@ -443,15 +443,15 @@
 
 | 电源轨 | BGA289 焊球 | 包含引脚 | 信号板建议电压 | 说明 |
 |--------|-----------|----------|-------------|------|
-| **VIO_B01** | K6, E6, E7, E8 | PA00~PA31 (全部PA组) | **3.3V** | CAN/UART/JTAG/BOOT，最多IO |
-| **VIO_B02** | J6 | PB00~PB11 | **3.3V** | RS485_CH2/CH3/CH4 + MCP2518FD SPI4 |
+| **VIO_B01** | K6, E6, E7, E8 | PA00~PA31 (全部PA组) | **3.3V** | MCAN3/UART0/JTAG/BOOT + RS485 CH1 |
+| **VIO_B02** | J6 | PB00~PB11 | **3.3V** | RS485_CH2/CH3 + Debug UART10 |
 | **VIO_B03** | H6 | PB12~PB23 | **3.3V** | RS485_CH5/CH6/CH7 |
 | **VIO_B04** | G6 | PB24~PB31 + PX00~PX07 | **3.3V** | XPI0 Flash |
-| **VIO_B05** | F7 | PC00~PC17 | **3.3V** | RS485_CH4(UART2) + RS485_CH8(UART4) |
-| **VIO_B06** | F8 | PC18~PC31 | **3.3V** | 空闲(FEMC/PPI备用) |
-| **VIO_B07** | F9 | PD00~PD31 | **3.3V** | Debug UART11(量产) |
+| **VIO_B05** | F7 | PC00~PC17 | **3.3V** | RS485_CH4(UART2) + RS485_CH8(UART4) + HLK(UART3) |
+| **VIO_B06** | F8 | PC18~PC31 + PD00~PD13 | **3.3V** | **MCAN0/1/2** |
+| **VIO_B07** | F9 | PD14~PD31 | **3.3V** | **MCAN4/5/6/7** |
 | **VIO_B08** | F10 | PE00~PE07 | **3.3V** | 空闲 |
-| **VIO_B09** | F11 | PE08~PE19 | **3.3V** | 空闲 |
+| **VIO_B09** | F11 | PE08~PE19 | **3.3V** | 空闲(原MCAN2已移PD) |
 | **VIO_B10** | J12 | PE20~PE31 | **3.3V** | ⭐ 千兆以太网 RGMII |
 | **VIO_B11** | K12 | PF00~PF15 | **3.3V** | ⭐ ETH MDIO/MDC(方案B) + ADC0/1 |
 | **VIO_B12** | L12 | PF16~PF31 | **3.3V** | ADC2/3 + CAN扩展 |
@@ -553,15 +553,15 @@
 | **JTAG 调试(仅开发)** | PA04/PA05/PA06/PA07/PA08 | ALT24 | B01 | TDO/TDI/TCK/TMS/TRST，量产释放给CAN1/2 |
 | **BOOT 配置** | PA02/PA03 | - | B01 | 启动锁存后做 MCAN0_STBY/MCAN1_STBY |
 | **Debug(开发)** | PA00(TX)/PA01(RX) | ALT2=UART0 | B01 | ISP烧录+Debug，与MCAN0复用 |
-| **Debug(量产)** | PD15(TX)/PD14(RX) | ALT2=UART11 | B07 | Debug日志输出，ISP改用USB0 |
-| **MCAN0** | **PD00(TX)/PD01(RX)/PD02(STBY)** | ALT7 | **B06** | ✅ 始终可用(PA00/01仅UART0 ISP) |
-| **MCAN1** | **PB05(TX)/PB04(RX)** | ALT7 | **B02** | ✅ 始终可用(PA04/05仅JTAG) |
-| **MCAN2** | **PE08(TX)/PE09(RX)/PE10(STBY)** | ALT7 | **B09** | ✅ 始终可用(PA08仅JTAG_TRST) |
-| **MCAN3** | PA15(TX)/PA14(RX)/PA13(STBY) | ALT7 | B01 | ✅ 始终可用 |
-| **MCAN4** | PA16(TX)/PA17(RX)/PA18(STBY) | ALT7 | B01 | ✅ 始终可用(不使用TSN) |
-| **MCAN5** | PA21(TX)/PA20(RX)/PA19(STBY) | ALT7 | B01 | ✅ 始终可用(不使用TSN) |
-| **CAN8** ⭐ | **MCP2518FD** | SPI4(PB08:MOSI, PB09:MISO, PB10:SCK, PB11:CS) | B02 | PA27=INT, SPI转CAN-FD桥接 |
-| **MCAN7** | PA31(TX)/PA30(RX)/PA29(STBY) | ALT7 | B01 | ✅ 方案B释放(MDIO改用PF00/PF01) |
+| **Debug(量产)** | **PB08(TX)/PB09(RX)** | ALT2=UART10 | B02 | 量产Debug日志，PB08-11原MCP2518FD SPI释放 |
+| **MCAN0** | **PD00(TX)/PD01(RX)** STBY=NC(PD02) | ALT7 | B06 | ✅ |
+| **MCAN1** | **PD05(TX)/PD04(RX)** STBY=NC(PD03) | ALT7 | B06 | ✅ |
+| **MCAN2** | **PD08(TX)/PD09(RX)** STBY=NC(PD10) | ALT7 | B06 | ✅ |
+| **MCAN3** | PA15(TX)/PA14(RX) STBY=NC(PA13) | ALT7 | B01 | ✅ 无PD替代 |
+| **MCAN4** | **PD16(TX)/PD17(RX)** STBY=NC(PD18) | ALT7 | B07 | ✅ |
+| **MCAN5** | **PD21(TX)/PD20(RX)** STBY=NC(PD19) | ALT7 | B07 | ✅ |
+| (已移除) | ~MCP2518FD~ | PB08-11释放给Debug UART10 | - | - |
+| **MCAN7** | **PD31(TX)/PD30(RX)** STBY=NC(PD29) | ALT7 | B07 | ✅ |
 | **RS485_CH1** | PA23(TX)/PA22(RX)/PA11(DE) | ALT2=UART5 | B01 | |
 | **RS485_CH2** | PB00(TX)/PB01(RX)/PB02(DE) | ALT2=UART8 | B02 | |
 | **RS485_CH3** | PB07(TX)/PB06(RX)/PB03(DE) | ALT2=UART9 | B02 | |
@@ -599,10 +599,10 @@
 
 | 冲突组 | 引脚 | 功能A | 功能B | 严重度 | 解决方案 |
 |--------|------|-------|-------|--------|----------|
-| **XPI0 ↔ MCAN6** | PB24~PB31 | XPI0 Flash | MCAN6(ALT7) | 🔴 硬冲突 | Flash必须用，MCAN6不可用；第8路CAN改用MCP2518FD(SPI4桥接) |
-| **JTAG ↔ MCAN1** | PA04, PA05 | JTAG_TDO/TDI | MCAN1_RXD/TXD | 🔴 开发冲突 | 开发保留JTAG，量产释放给CAN1，ISP改用USB0 |
-| **JTAG ↔ MCAN2** | PA08 | JTAG_TRST | MCAN2_TXD | 🔴 开发冲突 | 同上 |
-| **UART0 ↔ MCAN0** | PA00, PA01 | UART0_TXD/RXD | MCAN0_TXD/RXD | 🟡 开发冲突 | 开发用UART0做ISP+Debug，量产UART0→MCAN0，Debug改UART11 |
+| ~~XPI0 ↔ MCAN6~~ | ~~PB24~PB31~~ | XPI0 Flash | MCAN6(ALT7) | ✅ 已解决 | MCAN6已移至PD24/PD25(PD组B07)，PB24-31仅XPI0 Flash |
+| ~~JTAG ↔ MCAN1~~ | ~~PA04/PA05~~ | JTAG_TDO/TDI | MCAN1_RXD/TXD | ✅ 已解决 | MCAN1已移至PD04/PD05(B06)，PA04/05仅JTAG |
+| ~~JTAG ↔ MCAN2~~ | ~~PA08~~ | JTAG_TRST | MCAN2_TXD | ✅ 已解决 | MCAN2已移至PD08/PD09(B06)，PA08仅JTAG |
+| ~~UART0 ↔ MCAN0~~ | ~~PA00/PA01~~ | UART0_TXD/RXD | MCAN0_TXD/RXD | ✅ 已解决 | MCAN0已移至PD00/PD01(B06)，PA00/01仅UART0 ISP |
 | **BOOT ↔ MCAN0 STBY** | PA02 | BOOT_MODE1 | MCAN0_STBY | 🟢 无冲突 | 启动时锁存，之后做CAN0 STBY |
 | **BOOT ↔ MCAN1 STBY** | PA03 | BOOT_MODE0 | MCAN1_STBY | 🟢 无冲突 | 同上 |
 | ~~ETH MDIO ↔ MCAN7~~ | ~~PA30~~ | ~~ETH0_MDIO~~ | ~~MCAN7_RXD~~ | ✅ 已解决 | 方案B：MDIO改用PF01，MDC改用PF00，PA30/PA31释放给MCAN7 |
@@ -613,7 +613,7 @@
 
 | 项目 | 开发阶段 | 量产阶段 |
 |------|---------|----------|
-| **可用CAN** | MCAN3/4/5/7 + MCP2518FD = **5路** | MCAN0/1/2/3/4/5/7 + MCP2518FD = **8路** |
+| **可用CAN** | 全部8路 MCAN0~7 | 全部8路 MCAN0~7 |
 | **ISP烧录** | UART0(PA00/PA01) ISP | USB0(M16/M17) ISP |
 | **Debug日志** | UART0(PA00/PA01) | UART11(PD14/PD15) |
 | **JTAG** | PA04~PA08 保留 | 专用(MCAN1/2已移至PB/PE组) |
