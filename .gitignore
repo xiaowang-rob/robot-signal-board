@@ -1,0 +1,24 @@
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# KiCad (auto-generated backup)
+*-backups/
+*.kicad_autosave
+*.kicad_sexp.bak
+
+# Python / temp
+__pycache__/
+*.pyc
+*.pyo
+
+# PDF exports (source is .md)
+# docs/*.pdf
