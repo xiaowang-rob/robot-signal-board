@@ -554,14 +554,14 @@
 | **BOOT 配置** | PA02/PA03 | - | B01 | 启动锁存后做 MCAN0_STBY/MCAN1_STBY |
 | **Debug(开发)** | PA00(TX)/PA01(RX) | ALT2=UART0 | B01 | ISP烧录+Debug，与MCAN0复用 |
 | **Debug(量产)** | **PB08(TX)/PB09(RX)** | ALT2=UART10 | B02 | 量产Debug日志，PB08-11原MCP2518FD SPI释放 |
-| **MCAN0** | **PD00(TX)/PD01(RX)** STBY=NC(PD02) | ALT7 | B06 | ✅ |
-| **MCAN1** | **PD05(TX)/PD04(RX)** STBY=NC(PD03) | ALT7 | B06 | ✅ |
-| **MCAN2** | **PD08(TX)/PD09(RX)** STBY=NC(PD10) | ALT7 | B06 | ✅ |
-| **MCAN3** | PA15(TX)/PA14(RX) STBY=NC(PA13) | ALT7 | B01 | ✅ 无PD替代 |
-| **MCAN4** | **PD16(TX)/PD17(RX)** STBY=NC(PD18) | ALT7 | B07 | ✅ |
-| **MCAN5** | **PD21(TX)/PD20(RX)** STBY=NC(PD19) | ALT7 | B07 | ✅ |
+| **MCAN0** | **PD00(TX)/PD01(RX)** STBY=**PD02(GPIO)** | ALT7 | B06 | ✅ STBY→TJA1050T S |
+| **MCAN1** | **PD05(TX)/PD04(RX)** STBY=**PD03(GPIO)** | ALT7 | B06 | ✅ STBY→TJA1050T S |
+| **MCAN2** | **PD08(TX)/PD09(RX)** STBY=**PD10(GPIO)** | ALT7 | B06 | ✅ STBY→TJA1050T S |
+| **MCAN3** | PA15(TX)/PA14(RX) STBY=**PA13(GPIO)** | ALT7 | B01 | ✅ STBY→TJA1050T S |
+| **MCAN4** | **PD16(TX)/PD17(RX)** STBY=**PD18(GPIO)** | ALT7 | B07 | ✅ STBY→TJA1050T S |
+| **MCAN5** | **PD21(TX)/PD20(RX)** STBY=**PD19(GPIO)** | ALT7 | B07 | ✅ STBY→TJA1050T S |
 | (已移除) | ~MCP2518FD~ | PB08-11释放给Debug UART10 | - | - |
-| **MCAN7** | **PD31(TX)/PD30(RX)** STBY=NC(PD29) | ALT7 | B07 | ✅ |
+| **MCAN7** | **PD31(TX)/PD30(RX)** STBY=**PD29(GPIO)** | ALT7 | B07 | ✅ STBY→TJA1050T S |
 | **RS485_CH1** | PA23(TX)/PA22(RX)/PA11(DE) | ALT2=UART5 | B01 | |
 | **RS485_CH2** | PB00(TX)/PB01(RX)/PB02(DE) | ALT2=UART8 | B02 | |
 | **RS485_CH3** | PB07(TX)/PB06(RX)/PB03(DE) | ALT2=UART9 | B02 | |
